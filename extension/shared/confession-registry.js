@@ -205,6 +205,7 @@
   // Pinned to verified immutable commit SHA for long-term stability; excludes copyrighted texts in Creeds.json README.
   const CREEDS_COMMIT_SHA = '2ae21a4c5387ecc91f474c9d3d67c826d2a6b9d5';
   const CREEDS_RAW_BASE = `https://raw.githubusercontent.com/NonlinearFruit/Creeds.json/${CREEDS_COMMIT_SHA}/creeds`;
+  const REPO_PACKS_BASE = 'https://raw.githubusercontent.com/Aussie-App-Studio/Confession-Hover/main/community_packs';
   const COMMUNITY_PACK_CATALOG = [
     // Ecumenical Creeds
     {
@@ -273,8 +274,8 @@
       category: 'Reformed Confessions',
       tradition: 'Scottish Reformation',
       structure: 'article',
-      description: '25-article confession drafted by John Knox and the Six Johns.',
-      url: `${CREEDS_RAW_BASE}/scots_confession.json`,
+      description: '25-article confession drafted by John Knox and the Six Johns (modern English, James Bulloch / Book of Confessions).',
+      url: `${REPO_PACKS_BASE}/scots_confession.json`,
       sourceUrl: 'https://reformedstandards.com/scottish/scots-confession.html',
       externalUrlPattern: 'https://reformedstandards.com/scottish/scots-confession.html#chapter-{article}',
       aliases: ['Scots Confession', 'Scottish Confession of Faith', 'Scots Confession of 1560'],
@@ -317,8 +318,8 @@
       category: 'Reformed Confessions',
       tradition: 'Swiss Reformation',
       structure: 'article',
-      description: 'Joint confession of Swiss Reformed cities (19 articles).',
-      url: `${CREEDS_RAW_BASE}/first_helvetic_confession.json`,
+      description: 'Joint confession of Swiss Reformed cities (19 articles, modernized spelling).',
+      url: `${REPO_PACKS_BASE}/first_helvetic_confession.json`,
       sourceUrl: '',
       aliases: ['First Helvetic Confession', '1st Helvetic Confession', 'First Helvetic'],
       riskyAliases: ['1HC']
@@ -336,6 +337,20 @@
       sourceUrl: '',
       aliases: ['Council of Orange', 'Second Council of Orange', 'Canons of Orange'],
       riskyAliases: []
+    },
+    {
+      id: 'thirty_nine_articles',
+      name: 'Thirty-Nine Articles',
+      shortName: '39 Articles',
+      year: '1571',
+      category: 'Reformed Confessions',
+      tradition: 'Anglican Reformation',
+      structure: 'article',
+      description: '39 Articles of Religion of the Church of England (1571 / BCP).',
+      url: `${REPO_PACKS_BASE}/thirty_nine_articles.json`,
+      sourceUrl: 'https://anglicansonline.org/basics/thirty-nine_articles.html',
+      aliases: ['Thirty-Nine Articles of Religion', 'Thirty-Nine Articles', 'Articles of Religion', '39 Articles'],
+      riskyAliases: ['39A']
     },
 
     // Baptist & Puritan Standards

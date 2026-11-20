@@ -1,0 +1,64 @@
+name: Build & Package Extension
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test & Package Chrome Extension
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Parser Tests
+        run: node --test tests/parser.test.mjs
+
+      - name: Extract Version from Manifest
+        id: manifest
+        run: |
+          VERSION=$(node -p "require('./extension/manifest.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Detected version: $VERSION"
+
+      - name: Package Extension ZIP
+        run: |
+          mkdir -p dist/staging
+          cp -r extension/* dist/staging/
+          rm -f dist/staging/test-page.html dist/staging/test-page.js
+          cd dist/staging
+          zip -r "../Confession-Hover-v${{ steps.manifest.outputs.version }}.zip" ./*
+          cd ../..
+          cp "dist/Confession-Hover-v${{ steps.manifest.outputs.version }}.zip" "dist/Confession-Hover.zip"
+          rm -rf dist/staging
+          ls -la dist/
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Confession-Hover-v${{ steps.manifest.outputs.version }}
+          path: dist/Confession-Hover-v${{ steps.manifest.outputs.version }}.zip
+
+      - name: Publish GitHub Release (On Tag)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/Confession-Hover-v${{ steps.manifest.outputs.version }}.zip
+            dist/Confession-Hover.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

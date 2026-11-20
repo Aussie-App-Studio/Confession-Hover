@@ -58,6 +58,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById(hashTab)) switchTab(hashTab);
   }
 
+  // Dashboard Rate & Share Buttons
+  const STORE_SHARE_URL = 'https://chromewebstore.google.com/search/Confession%20Hover';
+  const STORE_SHARE_TEXT = 'Check out Confession Hover — instant 0ms hover previews for historic Christian confessions, catechisms & creeds. 100% free and offline!';
+
+  const dashRateBtn = document.getElementById('dashRateBtn');
+  dashRateBtn?.addEventListener('click', () => {
+    chrome.storage.local.set({ hasRatedOrShared: true, lastPromptDate: Date.now() });
+  });
+
+  const dashShareBtn = document.getElementById('dashShareBtn');
+  const dashShareText = document.getElementById('dashShareText');
+  const dashShareNotice = document.getElementById('dashShareNotice');
+
+  dashShareBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(`${STORE_SHARE_TEXT}\n${STORE_SHARE_URL}`);
+      if (dashShareNotice) {
+        dashShareNotice.style.display = 'block';
+        setTimeout(() => { dashShareNotice.style.display = 'none'; }, 3000);
+      }
+      if (dashShareText) {
+        dashShareText.textContent = '✓ Copied!';
+        setTimeout(() => { dashShareText.textContent = '💌 Share'; }, 2000);
+      }
+      chrome.storage.local.set({ hasRatedOrShared: true, lastPromptDate: Date.now() });
+    } catch {
+      window.open(STORE_SHARE_URL, '_blank');
+    }
+  });
+
   // Load config
   const stored = await chrome.storage.local.get([
     'enabled', 'scanMode', 'theme', 'fontSize', 'bodyFont',
@@ -195,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       previewBadge.textContent = 'HC';
       subbarEl.textContent = "Lord's Day 1";
       footerLeft.textContent = 'Heidelberg Catechism (1563)';
-      bodyEl.innerHTML = `<div style="font-weight:700; margin-bottom:6px;"><span style="color:${accent};">Q.1</span> What is your only comfort in life and death?</div><div><span style="color:${accent}; font-weight:700;">A.</span> That I am not my own, but belong with body and soul, both in life and in death, to my faithful Saviour Jesus Christ.</div>`;
+      bodyEl.innerHTML = `<div style="font-weight:700; margin-bottom:6px;"><span style="color:${accent};">Q.1</span> What is your only comfort in life and in death?</div><div><span style="color:${accent}; font-weight:700;">A.</span> That I am not my own, but belong—body and soul, in life and in death—to my faithful Savior, Jesus Christ.</div>`;
     }
   }
 

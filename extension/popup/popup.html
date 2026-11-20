@@ -77,6 +77,61 @@
       <div id="siteNoticeCard" class="site-notice-card" style="display: none;"></div>
     </section>
 
+    <!-- Organic Share & Rate Prompt Banner -->
+    <section id="shareBanner" class="share-banner" style="display: none;">
+      <div class="share-banner-card">
+        <button type="button" class="share-close-btn" id="shareBannerDismissBtn" title="Dismiss for now" aria-label="Dismiss">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.2" fill="none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+
+        <div class="share-banner-header">
+          <span class="share-banner-badge">❤️ 100% FREE &amp; OPEN SOURCE</span>
+          <h3 class="share-banner-title" id="shareBannerTitle">Blessing your confessional study?</h3>
+          <p class="share-banner-desc" id="shareBannerDesc">
+            Help fellow pastors, students, and believers discover Confession Hover by rating it on the Web Store or sharing it!
+          </p>
+        </div>
+
+        <div class="share-banner-actions" id="shareBannerActions">
+          <button type="button" id="shareRateBtn" class="share-action-btn primary" title="Rate 5 stars on the Chrome Web Store">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="#fbbf24" stroke="#f59e0b" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Rate 5 Stars</span>
+          </button>
+          <button type="button" id="shareFriendsBtn" class="share-action-btn secondary" title="Share with friends or pastors">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            <span>Share with Friends</span>
+          </button>
+        </div>
+
+        <div id="shareLinksDrawer" class="share-links-drawer" style="display: none;">
+          <div class="share-pills-row">
+            <button type="button" id="shareCopyLinkBtn" class="share-pill" title="Copy recommendation link to clipboard">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span id="shareCopyText">Copy Link</span>
+            </button>
+            <button type="button" id="shareEmailBtn" class="share-pill" title="Email to a friend or pastor">
+              <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Email</span>
+            </button>
+            <button type="button" id="shareWhatsAppBtn" class="share-pill" title="Share via WhatsApp">
+              <span>💬 WhatsApp</span>
+            </button>
+            <button type="button" id="shareXBtn" class="share-pill" title="Post on X">
+              <span>𝕏 Post</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="share-banner-footer" id="shareBannerFooter">
+          <button type="button" id="shareRemindLaterBtn" class="share-remind-link">Remind me in a year</button>
+        </div>
+
+        <div id="shareThanksNotice" class="share-thanks-msg" style="display: none;">
+          Thank you so much! Your recommendation helps spread these historic Christian standards freely to pastors and believers worldwide. ❤️
+        </div>
+      </div>
+    </section>
+
     <!-- Preferences -->
     <section class="section settings-section">
       <h2 class="section-title">Preferences</h2>

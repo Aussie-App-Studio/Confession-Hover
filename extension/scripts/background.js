@@ -36,7 +36,11 @@ const DEFAULT_SETTINGS = {
   riskyAliasMode: 'context', // 'context' | 'strict' | 'always'
   disabledDocIds: [],
   disabledDomains: DEFAULT_DISABLED_DOMAINS,
-  installedPackRegistry: []
+  installedPackRegistry: [],
+  installDate: null,
+  lastPromptDate: null,
+  hasRatedOrShared: false,
+  confessionHoverCount: 0
 };
 
 // In-memory LRU pack cache (fast 0ms lookups once loaded)
@@ -551,6 +555,9 @@ chrome.runtime.onInstalled.addListener(async (details) => {
   for (const [k, v] of Object.entries(DEFAULT_SETTINGS)) {
     if (stored[k] === undefined) toSet[k] = v;
   }
+  if (stored.installDate === undefined || stored.installDate === null) {
+    toSet.installDate = Date.now();
+  }
   if (Object.keys(toSet).length > 0) {
     await chrome.storage.local.set(toSet);
   }
@@ -570,6 +577,30 @@ chrome.runtime.onStartup?.addListener(() => {
   syncInstalledPackRegistry().catch(() => {});
 });
 
+// Only increment confessionHoverCount up to the rating-prompt threshold (5), so hovering
+// doesn't trigger storage writes and chrome.storage.onChanged broadcasts forever.
+const HOVER_COUNT_CAP = 5;
+let hoverCountCapped = false;
+let hoverCountUpdating = false;
+
+function recordConfessionHover() {
+  if (hoverCountCapped || hoverCountUpdating) return;
+  hoverCountUpdating = true;
+  chrome.storage.local.get('confessionHoverCount', (data) => {
+    hoverCountUpdating = false;
+    const current = data?.confessionHoverCount || 0;
+    if (current >= HOVER_COUNT_CAP) {
+      hoverCountCapped = true;
+      return;
+    }
+    const next = current + 1;
+    if (next >= HOVER_COUNT_CAP) {
+      hoverCountCapped = true;
+    }
+    chrome.storage.local.set({ confessionHoverCount: next });
+  });
+}
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (!message || !message.type) return false;
 
@@ -586,6 +617,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           if (items.length === 0) {
             throw new Error(`Entry not found for ${parsedRef.canonicalLabel}.`);
           }
+          recordConfessionHover();
           const contextInfo = buildContextKey(pack, parsedRef);
           const externalUrl = Registry.getExternalUrl(pack, parsedRef);
           const isFullContextAlready = Boolean(

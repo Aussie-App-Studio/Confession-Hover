@@ -380,4 +380,146 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
+
+  // --- Organic Share & Rate Prompt System ---
+  const STORE_ID = chrome.runtime?.id || '';
+  const STORE_BASE_URL = STORE_ID
+    ? `https://chromewebstore.google.com/detail/${STORE_ID}`
+    : 'https://chromewebstore.google.com/search/Confession%20Hover';
+  const STORE_REVIEWS_URL = STORE_ID ? `${STORE_BASE_URL}/reviews` : STORE_BASE_URL;
+  const SHARE_TEXT = 'Check out Confession Hover — instant 0ms hover previews for historic Christian confessions, catechisms & creeds in your browser. 100% free with no ads!';
+
+  const shareBanner = document.getElementById('shareBanner');
+  const shareRateBtn = document.getElementById('shareRateBtn');
+  const shareFriendsBtn = document.getElementById('shareFriendsBtn');
+  const shareLinksDrawer = document.getElementById('shareLinksDrawer');
+  const shareBannerDismissBtn = document.getElementById('shareBannerDismissBtn');
+  const shareRemindLaterBtn = document.getElementById('shareRemindLaterBtn');
+  const shareThanksNotice = document.getElementById('shareThanksNotice');
+  const shareCopyLinkBtn = document.getElementById('shareCopyLinkBtn');
+  const shareCopyText = document.getElementById('shareCopyText');
+  const shareEmailBtn = document.getElementById('shareEmailBtn');
+  const shareWhatsAppBtn = document.getElementById('shareWhatsAppBtn');
+  const shareXBtn = document.getElementById('shareXBtn');
+
+  async function checkAndRenderSharePrompt() {
+    const data = await chrome.storage.local.get([
+      'installDate',
+      'lastPromptDate',
+      'hasRatedOrShared',
+      'confessionHoverCount'
+    ]);
+
+    if (data.hasRatedOrShared) {
+      if (shareBanner) shareBanner.style.display = 'none';
+      return;
+    }
+
+    const now = Date.now();
+    let installDate = data.installDate;
+    if (!installDate) {
+      installDate = now;
+      chrome.storage.local.set({ installDate: now });
+    }
+
+    const daysSinceInstall = (now - installDate) / (1000 * 60 * 60 * 24);
+    const lastPrompt = data.lastPromptDate;
+    const daysSinceLastPrompt = lastPrompt ? (now - lastPrompt) / (1000 * 60 * 60 * 24) : 9999;
+    const hovers = data.confessionHoverCount || 0;
+
+    let shouldShow = false;
+
+    if (!lastPrompt) {
+      // First prompt window once user has tested it (>= 5 hovers or >= 3 days installed)
+      if (daysSinceInstall >= 3 || hovers >= 5) {
+        shouldShow = true;
+      }
+    } else {
+      // Annual recurring prompt: at least 365 days after the previous prompt
+      if (daysSinceLastPrompt >= 365) {
+        shouldShow = true;
+      }
+    }
+
+    if (shouldShow && shareBanner) {
+      shareBanner.style.display = 'block';
+    }
+  }
+
+  function dismissPrompt() {
+    if (!shareBanner) return;
+    shareBanner.style.display = 'none';
+    chrome.storage.local.set({
+      lastPromptDate: Date.now()
+    });
+  }
+
+  function handlePromptCompleted() {
+    chrome.storage.local.set({
+      hasRatedOrShared: true,
+      lastPromptDate: Date.now()
+    });
+    const actions = document.getElementById('shareBannerActions');
+    const footer = document.getElementById('shareBannerFooter');
+    if (actions) actions.style.display = 'none';
+    if (footer) footer.style.display = 'none';
+    if (shareLinksDrawer) shareLinksDrawer.style.display = 'none';
+    if (shareThanksNotice) shareThanksNotice.style.display = 'block';
+    setTimeout(() => {
+      if (shareBanner) shareBanner.style.display = 'none';
+    }, 3500);
+  }
+
+  shareRateBtn?.addEventListener('click', () => {
+    if (chrome.tabs && chrome.tabs.create) {
+      chrome.tabs.create({ url: STORE_REVIEWS_URL });
+    } else {
+      window.open(STORE_REVIEWS_URL, '_blank');
+    }
+    handlePromptCompleted();
+  });
+
+  shareFriendsBtn?.addEventListener('click', () => {
+    if (shareLinksDrawer) {
+      shareLinksDrawer.style.display = shareLinksDrawer.style.display === 'none' ? 'block' : 'none';
+    }
+  });
+
+  shareCopyLinkBtn?.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(`${SHARE_TEXT}\n${STORE_BASE_URL}`);
+      if (shareCopyText) shareCopyText.textContent = 'Copied!';
+      setTimeout(() => {
+        if (shareCopyText) shareCopyText.textContent = 'Copy Link';
+        handlePromptCompleted();
+      }, 1000);
+    } catch {
+      handlePromptCompleted();
+    }
+  });
+
+  shareEmailBtn?.addEventListener('click', () => {
+    const subject = encodeURIComponent('Helpful free study tool: Confession Hover');
+    const body = encodeURIComponent(`Hi!\n\nI've been using this free Chrome extension called Confession Hover. Whenever you hover over any confessional, catechism, or creed reference online (like WCF 1.2, Heidelberg Catechism 26, or Canons of Dort 1.7), it instantly shows the full text with zero delay.\n\nIt's completely free with no ads or tracking:\n${STORE_BASE_URL}`);
+    window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+    handlePromptCompleted();
+  });
+
+  shareWhatsAppBtn?.addEventListener('click', () => {
+    const text = encodeURIComponent(`Check out Confession Hover — free instant confession & catechism previews in your browser:\n${STORE_BASE_URL}`);
+    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    handlePromptCompleted();
+  });
+
+  shareXBtn?.addEventListener('click', () => {
+    const text = encodeURIComponent('Check out Confession Hover — instant 0ms hover previews for historic Christian confessions, catechisms & creeds in your browser. Free & open source:');
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${encodeURIComponent(STORE_BASE_URL)}`, '_blank');
+    handlePromptCompleted();
+  });
+
+  shareBannerDismissBtn?.addEventListener('click', dismissPrompt);
+  shareRemindLaterBtn?.addEventListener('click', dismissPrompt);
+
+  checkAndRenderSharePrompt();
+  window.checkAndRenderSharePrompt = checkAndRenderSharePrompt;
 });

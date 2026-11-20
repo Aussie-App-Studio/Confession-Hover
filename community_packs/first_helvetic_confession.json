@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "id": "first_helvetic",
+  "name": "First Helvetic Confession",
+  "shortName": "1HC",
+  "year": "1536",
+  "translation": "George Wishart (1537, modernized spelling)",
+  "tradition": "Swiss Reformation",
+  "structure": "article",
+  "bundled": false,
+  "custom": false,
+  "sourceUrl": "https://quod.lib.umich.edu/e/eebo/A13256.0001.001?rgn=main;view=fulltext",
+  "externalUrlPattern": "",
+  "aliases": [
+    "First Helvetic Confession",
+    "1st Helvetic Confession",
+    "First Helvetic"
+  ],
+  "riskyAliases": [
+    "1HC"
+  ],
+  "bounds": {
+    "maxNumber": 19
+  },
+  "entries": {
+    "1": {
+      "article": "1",
+      "title": "Of the Holy Scripture",
+      "text": "The canonical or holy Scripture, which is the Word of God taught and given by the Holy Spirit and published unto the world by the prophets and holy apostles, which also is the most perfect and ancient science and doctrine of wisdom, alone contains consummately all godliness and every sort and manner of fashion of life."
+    },
+    "2": {
+      "article": "2",
+      "title": "Of the Exposition of Scripture",
+      "text": "The interpretation or exposition of this holy writ ought and should be sought out of itself, so that it should be its own interpreter, the rule of charity and faith having governance."
+    },
+    "3": {
+      "article": "3",
+      "title": "Of Human Traditions",
+      "text": "As to other things, of traditions of men, however beautiful and however much received they may be, whatsoever traditions withdraw us and stop us from the Scripture, of such do we answer the sayings of the Lord as of things hurtful and unprofitable: \"They worship me in vain, teaching the doctrines of men\" (Matthew 15)."
+    },
+    "4": {
+      "article": "4",
+      "title": "Of the Holy Fathers",
+      "text": "For which sort of interpretation, so far as the holy fathers have not gone from it, not only do we receive them as interpreters of the Scripture, but also we honor and esteem them as chosen and beloved instruments of God."
+    },
+    "5": {
+      "article": "5",
+      "title": "The End and Intent of Scripture",
+      "text": "The principal intent of all the canonical Scripture is to declare that God is benevolent and friendly-minded to mankind, and that he has declared that kindness in and through Jesus Christ his only Son; which kindness is received by faith, and this faith is effectual through charity and expressed in an innocent life."
+    },
+    "6": {
+      "article": "6",
+      "title": "Of God",
+      "text": "Of God we believe in this sort: that he is almighty, being one in substance and three in persons; who, even as he has created by his Word—that is, his Son—all things of nothing, so by his Spirit and providence governs, preserves, and nourishes most truly, righteously, and wisely all things."
+    },
+    "7": {
+      "article": "7",
+      "title": "Of Man",
+      "text": "Man, who is the most perfect image of God on earth and also is the chief dignity and honor among all visible creatures, being made of soul and body—of which two the body is mortal and the soul immortal—when he was created by God holy, by falling into vice and sin through his own fall, drew with him in that same ruin and fall, and so subjected all mankind to, the same calamity and wretchedness that he fell into."
+    },
+    "8": {
+      "article": "8",
+      "title": "Of Original Sin",
+      "text": "And so this pestiferous infection which men call original sin has infected and overspread the whole kind of man, so far that by no human help could he (being the child of wrath and vengeance and enemy of God) be healed by any means, but by the help of God only. For if there be any good that remains in man after the fall, that same being continually made weaker and weaker by our vice turns to the worse, because the strength and power of evil overcomes it, and neither suffers us to follow reason nor yet to exercise the godliness of our mind."
+    },
+    "9": {
+      "article": "9",
+      "title": "Of Free Will",
+      "text": "Wherefore we attribute so much free will to man as we who, knowing and willing to do good, feel experience of evil. Also evil truly we may do of our own will, but to embrace and follow good (except we be illuminated, stirred up, and moved by the grace of Christ) we may not; for God is he who works in us both to will, to perform, and to accomplish for his own good pleasure's sake. And of God comes our health and salvation, but of ourselves comes perdition."
+    },
+    "10": {
+      "article": "10",
+      "title": "Of the Eternal Purpose of God to Restore Man",
+      "text": "And although through his fault man was subject unto damnation and also had run under the just indignation of God to take vengeance on him, yet God the Father never ceased to take a merciful care over him—which thing is manifest not only from the first promises and the whole law (which, as it is holy and good, teaching us the will of God, righteousness, and truth, so works wrath and stirs up sin within us, and slacks it not, and that not through any fault of itself but through our vice), but also clearly appears through Christ, who was ordained and given for that purpose."
+    },
+    "11": {
+      "article": "11",
+      "title": "Of Jesus Christ and What Is Done by Him",
+      "text": "This Christ, the very Son of God, and very God and very man also, was made our brother. At the time appointed he took upon him whole man, made of soul and body, having two natures unmixed and one divine person, to the intent that he should restore unto life us that were dead and make us heirs of God annexed with himself. After he had taken upon him of the immaculate virgin by operation of the Holy Ghost flesh—which was holy because of the union of the Godhead, and was like to our flesh in all things except in sinfulness, because it behoved the sacrifice for sin to be clean and immaculate—he gave that same flesh to death to expel all our sin by that means. And to the intent that we should have a full and perfect hope and trust of our immortality, he has raised up again from death to life his own flesh, and has set and placed it in heaven at the right hand of his almighty Father.\n\nAnd there he sits, our victorious champion, our guide, our captain, and head, also our highest bishop indeed—sin, death, and hell being victoriously overcome by him—and defends our cause and pleads it perpetually until he shall reform and fashion us to that likeness to which we were created, and bring us to be partakers of eternal life. And we look for him and believe that he shall come at the end of all ages to be our true, righteous, just Judge, and shall pronounce sentence against all flesh, which shall be raised up before to that judgment, and that he shall exalt the godly above the heavens, but the ungodly shall he condemn both body and soul to eternal destruction.\n\nAnd as he only is our mediator and intercessor, host and sacrifice, bishop, Lord, and our King, so also do we acknowledge and confess him only to be our atonement and ransom, satisfaction, expiation, our wisdom, our defense, and our only deliverer, refusing utterly all other means of life and salvation except thus by Christ only."
+    },
+    "12": {
+      "article": "12",
+      "title": "The End of the Preaching of the Gospel",
+      "text": "And therefore in the whole doctrine of the evangelists, we announce and show to be the first and chiefly to be inculcated and taught that we are saved only by the mercy of God and merit of our Savior Christ. And that men may perceive and understand the better how necessary is the mercy of God and Christ's merits for them, their sins should be clearly shown to them by the law, and remission by Christ's death."
+    },
+    "13": {
+      "article": "13",
+      "title": "Of Faith and of Its Power",
+      "text": "And these so godly benefits, with the very sanctification of the Holy Spirit, do we obtain by faith, the very true gift of God, and not through any other power or strength of ourselves or merits.\n\nWhich faith is a certain and undoubted substance and apprehension of all things that we hope for to come of the kindness of God; and it comes first out of charity itself, and works noble fruits of all virtues. Yet notwithstanding we attribute nothing to the deeds—although they be godly, yet are they men's works and acts—but the health and salvation that is obtained we attribute to the grace of God only. And truly this worship alone is the very true worship of God: faith, I mean, most pregnant and plentiful of good works, without any confidence in the works."
+    },
+    "14": {
+      "article": "14",
+      "title": "The Congregation or Church",
+      "text": "Also we hold and believe that the church, which is the congregation and election of all holy men, which also is the spouse of Christ whom he shall present without spot unto his Father, washing it in his own blood, is of such lively stones aforesaid laid upon this lively rock in this manner. Which church, although it be evidently known only to the eyes of God, yet by certain external rites instituted by Christ and by a public and lawful teaching of the Word of God, not only is it spied and known, but it is also so constituted by them that without the ceremonies there is no man reckoned to be of it, except it be by a singular privilege of God."
+    },
+    "15": {
+      "article": "15",
+      "title": "The Ministers of the Word of God",
+      "text": "And for this cause we grant the ministers of the church to be coworkers with God, as Paul calls them, by whom God gives and ministers both knowledge of ourselves and remission of sin, and converts men to himself, raises them up, comforts them, frightens them also, and judges them—but so that the virtue and efficacy thereof we ascribe solely to the Lord, and likewise in the ministration of the sacraments. For it is manifest that this efficacy and power is not bound nor knit to any creature, but is dispensed liberally and freely to whomsoever and whensoever he shall please; for he that waters is nothing, nor yet is he that plants anything, but he that gives the increase, which is God."
+    },
+    "16": {
+      "article": "16",
+      "title": "The Power of the Church",
+      "text": "The authority to preach God's Word and to feed the Lord's flock—which properly is the power of the keys, prescribing and commanding all men both high and low alike—should be holy and inviolate, and should be committed only to them that are meet therefore and chosen either by the election of God, or else by a sure and advised election of the church, or by their will to whom the churches depute and appoint that office of choosing."
+    },
+    "17": {
+      "article": "17",
+      "title": "The Choosing of Ministers or Officers",
+      "text": "This ministration and office should be granted to no man but to him whom the ministers of the church, and they unto whom the charge is given by the churches, have found and judged to be of knowledge in the law of God and of innocent life; which, seeing it is the very election of God, is well and justly approved by the voice of the church and the imposition of hands of the elders."
+    },
+    "18": {
+      "article": "18",
+      "title": "The Head and Shepherd of the Church",
+      "text": "Christ verily himself is the very true head of his church and congregation, and the only pastor and shepherd; and he also gives presidents, heads, and teachers, to the intent that in the external administration they should use the power of the church well and lawfully. Wherefore we acknowledge not them that are heads and pastors in name only, nor yet the Romanish heads."
+    },
+    "19": {
+      "article": "19",
+      "title": "The Duty of Ministers or Officers",
+      "text": "The chief and principal office of this ministration is to preach repentance and remission of sin through Jesus Christ, to pray continually for the people, to give diligence wholly to holy studies and to the Word of God, and to resist and pursue the devil always with the Word of God as with the sword of the Spirit, and that with a deadly hatred, and by all means to chase him away, to defend the holy citizens of Christ.\n\nAnd by all means to compel and reprove the faulty and vicious, and to exclude from the church them that stray too far, and that by a godly consent and agreement of them which are chosen of the ministers and magistrates for correction, or to punish them by any other convenient and profitable means so long until they come to amendment and so be saved; for this is the returning of the church again for one such citizen of Christ, if he acknowledge and confess his error with converted mind and life. For all this doctrine seeks and wills that we require willing and healthful correction, and cheer or comfort all the godly by a new study of godliness."
+    }
+  }
+}

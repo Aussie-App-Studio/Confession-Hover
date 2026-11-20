@@ -1,4 +1,4 @@
-Confession Hover — Instant 0ms Confession, Catechism & Creed Previews
+Confession Hover — Instant Creed & Catechism Previews
 
 Read Reformed & historic Christian theology articles, blog posts, sermons, and study notes without losing your place. Confession Hover detects confessional citations right on the webpage and displays the matching article, Q&A, chapter, or Lord's Day in an instant hover card.
 

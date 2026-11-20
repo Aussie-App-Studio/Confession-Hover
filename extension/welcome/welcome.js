@@ -130,4 +130,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('openPacksTabBtn')?.addEventListener('click', () => openDash('#packs'));
   document.getElementById('launchVerifyBtn')?.addEventListener('click', openTest);
   document.getElementById('bottomLaunchBtn')?.addEventListener('click', openTest);
+
+  const welcomeRateBtn = document.getElementById('welcomeRateBtn');
+  welcomeRateBtn?.addEventListener('click', () => {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.set({ hasRatedOrShared: true, lastPromptDate: Date.now() });
+    }
+  });
 });

@@ -73,6 +73,15 @@
   let isDrawerOpen = false;
   let activeDrawerTab = 'context';
 
+  const RATE_PROMPT_SNOOZE_MS = 7 * 24 * 60 * 60 * 1000;
+  const RATE_PROMPT_MIN_ITEMS = 2;
+  const RATE_PROMPT_MIN_NATURAL_HEIGHT = 260;
+  const RATE_PROMPT_MAX_SHORT_DEFERS = 4;
+  let ratePromptSettled = false;
+  let ratePromptNextCheckAt = 0;
+  let ratePromptEligible = false;
+  let ratePromptDeferredShortCount = 0;
+
   const IGNORE_TAGS = new Set([
     'SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA', 'INPUT', 'SELECT',
     'CODE', 'PRE', 'KBD', 'SAMP', 'VAR', 'OUTPUT', 'BUTTON',
@@ -908,12 +917,147 @@
         color: #ffffff;
         border-color: var(--ch-accent);
       }
+      @keyframes chRateFadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .ch-rate-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 22px 20px;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+        backdrop-filter: blur(8px);
+        animation: chRateFadeIn 0.2s ease-out;
+      }
+      .ch-tooltip.theme-light .ch-rate-overlay {
+        background: rgba(255, 255, 255, 0.95);
+        color: #18181b;
+      }
+      .ch-tooltip.theme-dark .ch-rate-overlay {
+        background: rgba(20, 22, 28, 0.96);
+        color: #fafafa;
+      }
+      .ch-tooltip.theme-sepia .ch-rate-overlay {
+        background: rgba(253, 246, 226, 0.96);
+        color: #433422;
+      }
+      .ch-rate-card {
+        position: relative;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 360px;
+        margin: auto;
+        flex-shrink: 0;
+      }
+      .ch-rate-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 2;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background: transparent;
+        border: none;
+        font-size: 15px;
+        line-height: 1;
+        cursor: pointer;
+        color: inherit;
+        opacity: 0.6;
+        padding: 0;
+        transition: opacity 0.15s ease, background-color 0.15s ease;
+      }
+      .ch-rate-close:hover {
+        opacity: 1;
+        background-color: rgba(128, 128, 128, 0.15);
+      }
+      .ch-rate-stars {
+        font-size: 20px;
+        letter-spacing: 2px;
+        user-select: none;
+      }
+      .ch-rate-title {
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .ch-rate-msg {
+        font-size: 12px;
+        line-height: 1.55;
+        opacity: 0.88;
+        font-style: italic;
+      }
+      .ch-rate-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        width: 100%;
+        margin-top: 4px;
+      }
+      .ch-rate-btn-primary {
+        background: var(--ch-accent, #9f1239);
+        color: #ffffff !important;
+        font-weight: 700;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 12.5px;
+        box-shadow: 0 2px 6px rgba(159, 18, 57, 0.35);
+        transition: all 0.15s ease;
+        display: block;
+        text-align: center;
+      }
+      .ch-rate-btn-primary:hover {
+        filter: brightness(0.92);
+        transform: translateY(-1px);
+      }
+      .ch-rate-btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(125, 125, 125, 0.3);
+        color: inherit;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+      }
+      .ch-rate-btn-secondary:hover {
+        background: rgba(125, 125, 125, 0.12);
+      }
     `;
     shadowRoot.appendChild(style);
 
     tooltipEl = document.createElement('div');
     tooltipEl.className = 'ch-tooltip';
     tooltipEl.innerHTML = `
+      <div class="ch-rate-overlay" id="chRateOverlay" style="display: none;">
+        <button class="ch-rate-close" id="chRateCloseBtn" title="Close & continue to entry" aria-label="Close">✕</button>
+        <div class="ch-rate-card">
+          <div class="ch-rate-stars">⭐⭐⭐⭐⭐</div>
+          <div class="ch-rate-title">Help Others Discover Confession Hover</div>
+          <div class="ch-rate-msg">
+            “If this app is helpful to you and you think it will be helpful to others, please rate it on the extension store. Google heavily weights reviews when deciding how much to highlight or hide extensions, and it would be nice for many people to benefit from the work.”
+          </div>
+          <div class="ch-rate-actions">
+            <a class="ch-rate-btn-primary" id="chRateStoreBtn" target="_blank" rel="noopener noreferrer">⭐ Rate on Extension Store ↗</a>
+            <button class="ch-rate-btn-secondary" id="chRateLaterBtn">Continue to Entry →</button>
+          </div>
+        </div>
+      </div>
       <div class="ch-header">
         <div class="ch-title-group">
           <span class="ch-ref-title">Reference</span>
@@ -1003,6 +1147,38 @@
     });
 
     shadowRoot.getElementById('chCloseBtn').addEventListener('click', () => hideTooltip(true));
+
+    // Rating & Review in-card overlay listeners
+    const rateStoreBtn = shadowRoot.getElementById('chRateStoreBtn');
+    const rateCloseBtn = shadowRoot.getElementById('chRateCloseBtn');
+    const rateLaterBtn = shadowRoot.getElementById('chRateLaterBtn');
+    const storeId = chrome.runtime?.id || '';
+    const STORE_REVIEW_URL = storeId
+      ? `https://chromewebstore.google.com/detail/${storeId}/reviews`
+      : 'https://chromewebstore.google.com/search/Confession%20Hover';
+
+    if (rateStoreBtn) {
+      rateStoreBtn.href = STORE_REVIEW_URL;
+      rateStoreBtn.addEventListener('click', () => {
+        ratePromptSettled = true;
+        ratePromptEligible = false;
+        ratePromptDeferredShortCount = 0;
+        chrome.storage.local.set({ hasRatedOrShared: true });
+        hideRateOverlay(true);
+      });
+    }
+
+    const dismissRatePrompt = () => {
+      ratePromptNextCheckAt = Date.now() + RATE_PROMPT_SNOOZE_MS;
+      ratePromptEligible = false;
+      ratePromptDeferredShortCount = 0;
+      chrome.storage.local.set({ lastPromptDate: Date.now() });
+      hideRateOverlay(true);
+    };
+
+    rateCloseBtn?.addEventListener('click', dismissRatePrompt);
+    rateLaterBtn?.addEventListener('click', dismissRatePrompt);
+
     shadowRoot.getElementById('chCopyBtn').addEventListener('click', handleCopyEntry);
     shadowRoot.getElementById('chBody').addEventListener('click', () => {
       if (config.minimalistMode && !window.getSelection()?.toString().trim()) {
@@ -1208,6 +1384,9 @@
       updateCardFooter(res);
       renderItemsIntoContainer(body, res);
       if (activeTarget) positionTooltip(activeTarget);
+      if (tooltipEl?.classList.contains('visible')) {
+        checkInCardRatingPrompt(parsedRef, res);
+      }
     });
   }
 
@@ -1447,6 +1626,119 @@
     positionTooltip(target);
   }
 
+  function syncRateOverlayHeight() {
+    if (!tooltipEl || !shadowRoot) return;
+    const rateOverlay = shadowRoot.getElementById('chRateOverlay');
+    const rateCard = rateOverlay?.querySelector('.ch-rate-card');
+    if (!rateOverlay || !rateCard || rateOverlay.style.display === 'none') return;
+
+    const overlayStyle = getComputedStyle(rateOverlay);
+    const padY = (parseFloat(overlayStyle.paddingTop) || 0) + (parseFloat(overlayStyle.paddingBottom) || 0);
+    const tooltipStyle = getComputedStyle(tooltipEl);
+    const borderY = (parseFloat(tooltipStyle.borderTopWidth) || 0) + (parseFloat(tooltipStyle.borderBottomWidth) || 0);
+    const maxTooltipHeight = Math.max(160, Math.min(480, window.innerHeight - 24));
+    const computeHeight = () => Math.min(
+      Math.ceil(rateCard.offsetHeight + padY + borderY),
+      maxTooltipHeight
+    );
+
+    tooltipEl.style.minHeight = `${computeHeight()}px`;
+    tooltipEl.style.minHeight = `${computeHeight()}px`;
+  }
+
+  function showRateOverlay() {
+    const rateOverlay = shadowRoot?.getElementById('chRateOverlay');
+    if (!rateOverlay || !tooltipEl) return;
+
+    rateOverlay.style.display = 'flex';
+    rateOverlay.scrollTop = 0;
+    tooltipEl.classList.add('ch-rate-open');
+    syncRateOverlayHeight();
+
+    if (activeTarget && tooltipEl.classList.contains('visible')) {
+      positionTooltip(activeTarget);
+    }
+  }
+
+  function hideRateOverlay(reposition = true) {
+    const rateOverlay = shadowRoot?.getElementById('chRateOverlay');
+    if (rateOverlay) {
+      rateOverlay.style.display = 'none';
+    }
+    if (tooltipEl) {
+      tooltipEl.classList.remove('ch-rate-open');
+      tooltipEl.style.minHeight = '';
+    }
+    if (reposition && activeTarget && tooltipEl?.classList.contains('visible')) {
+      positionTooltip(activeTarget);
+    }
+  }
+
+  function checkInCardRatingPrompt(parsedRef, entryRes) {
+    const rateOverlay = shadowRoot?.getElementById('chRateOverlay');
+    if (!rateOverlay) return;
+
+    const now = Date.now();
+    if (ratePromptSettled || now < ratePromptNextCheckAt) {
+      hideRateOverlay(false);
+      return;
+    }
+
+    const itemCount = Array.isArray(entryRes?.items) ? entryRes.items.length : 0;
+
+    const evaluateAndMaybeShow = () => {
+      if (!tooltipEl?.classList.contains('visible') || currentRefData !== parsedRef) return;
+
+      const naturalHeight = tooltipEl.offsetHeight || 0;
+      const hasComfortableRoom = itemCount >= RATE_PROMPT_MIN_ITEMS || naturalHeight >= RATE_PROMPT_MIN_NATURAL_HEIGHT;
+
+      if (hasComfortableRoom || ratePromptDeferredShortCount >= RATE_PROMPT_MAX_SHORT_DEFERS) {
+        ratePromptDeferredShortCount = 0;
+        showRateOverlay();
+      } else {
+        ratePromptDeferredShortCount++;
+        hideRateOverlay(false);
+      }
+    };
+
+    if (ratePromptEligible) {
+      evaluateAndMaybeShow();
+      return;
+    }
+
+    try {
+      chrome.storage.local.get(['confessionHoverCount', 'hasRatedOrShared', 'lastPromptDate'], (data) => {
+        if (!data || data.hasRatedOrShared) {
+          ratePromptSettled = true;
+          ratePromptEligible = false;
+          hideRateOverlay(false);
+          return;
+        }
+
+        const count = data.confessionHoverCount || 0;
+        const currentNow = Date.now();
+        const lastPrompt = data.lastPromptDate || 0;
+        if (lastPrompt > 0 && currentNow - lastPrompt < RATE_PROMPT_SNOOZE_MS) {
+          ratePromptNextCheckAt = lastPrompt + RATE_PROMPT_SNOOZE_MS;
+          ratePromptEligible = false;
+          hideRateOverlay(false);
+          return;
+        }
+        const daysSinceLastPrompt = (currentNow - lastPrompt) / (1000 * 60 * 60 * 24);
+
+        // Trigger after the extension has been used a couple of times (>= 5 hovers), snoozed for 7 days
+        if (count >= 5 && daysSinceLastPrompt >= 7) {
+          ratePromptEligible = true;
+          evaluateAndMaybeShow();
+        } else {
+          hideRateOverlay(false);
+        }
+      });
+    } catch {
+      hideRateOverlay(false);
+    }
+  }
+
   function scheduleHideTooltip() {
     clearTimeout(hideTimer);
     hideTimer = setTimeout(() => {
@@ -1459,6 +1751,7 @@
   function hideTooltip() {
     clearTimeout(showTimer);
     clearTimeout(hideTimer);
+    hideRateOverlay(false);
     if (!tooltipEl) return;
     tooltipEl.classList.remove('visible');
     activeTarget = null;
@@ -1911,6 +2204,20 @@
         if (!chrome.runtime?.id || area !== 'local') {
           if (!chrome.runtime?.id) disconnectObservers();
           return;
+        }
+
+        if (changes.hasRatedOrShared) {
+          ratePromptSettled = Boolean(changes.hasRatedOrShared.newValue);
+          ratePromptEligible = false;
+          ratePromptDeferredShortCount = 0;
+          if (ratePromptSettled) hideRateOverlay(false);
+        }
+        if (changes.lastPromptDate) {
+          const ts = changes.lastPromptDate.newValue || 0;
+          ratePromptNextCheckAt = ts > 0 ? ts + RATE_PROMPT_SNOOZE_MS : 0;
+          ratePromptEligible = false;
+          ratePromptDeferredShortCount = 0;
+          if (ts > 0) hideRateOverlay(false);
         }
 
         let configChanged = false;
