@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Confession Hover</title>
+  <link rel="stylesheet" href="../options/options.css">
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="w-nav">
+    <div class="w-nav-inner">
+      <a href="#" class="w-nav-brand">
+        <img src="../icons/icon48.png" alt="Confession Hover Logo" class="w-nav-logo">
+        <div>
+          <div class="w-nav-title">Confession Hover</div>
+          <div class="w-nav-sub">Welcome &amp; Quick Setup</div>
+        </div>
+      </a>
+      <div class="w-nav-actions">
+        <button type="button" class="w-nav-btn secondary" id="openDashboardBtn">Full Dashboard ↗</button>
+        <button type="button" class="w-nav-btn primary" id="launchVerifyBtn">Test Confessions Live →</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="w-container">
+    <!-- Hero -->
+    <header class="w-hero">
+      <div class="w-hero-pill">
+        <span>✨</span>
+        <span>Extension Ready • 7 Historic Standards Bundled Offline</span>
+      </div>
+      <h1 class="w-hero-title">Welcome to Confession Hover</h1>
+      <p class="w-hero-sub">
+        Instant 0ms hover previews for historic Christian confessions, catechisms &amp; creeds—designed as a seamless companion to Bible Hover.
+      </p>
+    </header>
+
+    <!-- Companion Note -->
+    <section class="w-about-card">
+      <div class="w-about-accent-bar"></div>
+      <div class="w-about-header">
+        <div class="w-about-author">
+          <div class="w-about-avatar">📜</div>
+          <div>
+            <h2>Companion to Bible Hover</h2>
+            <div class="w-about-subtitle">Aussie-App-Studio • 100% Free, Open Source &amp; Private</div>
+          </div>
+        </div>
+        <div class="w-about-badges">
+          <span class="w-badge-pill free">0ms Offline Engine</span>
+          <span class="w-badge-pill privacy">Zero Tracking</span>
+        </div>
+      </div>
+
+      <div class="w-about-body">
+        <p>
+          <strong>Confession Hover</strong> ships out of the box with all 7 foundational Reformed &amp; Reformed Baptist standards pre-bundled locally:
+          <strong>Heidelberg Catechism</strong> (with all 52 Lord's Days), <strong>Belgic Confession</strong>, <strong>Canons of Dort</strong> (Articles &amp; Rejections of Errors),
+          <strong>Westminster Confession of Faith (1647)</strong>, <strong>Westminster Larger &amp; Shorter Catechisms</strong>, and the <strong>1689 London Baptist Confession</strong>.
+        </p>
+        <p>
+          Running <strong>Bible Hover</strong> at the same time? Confession Hover uses a distinct <strong>deep burgundy</strong> accent by default so Scripture citations (blue) and confessional citations (burgundy) never clash on the same page.
+        </p>
+      </div>
+    </section>
+
+    <!-- Quick 1-Click Ecumenical Creeds -->
+    <section class="w-card">
+      <div class="w-card-head">
+        <div>
+          <h3>1-Click Add Ecumenical Creeds</h3>
+          <p class="w-card-sub">Click any creed below to install it from Public Domain GitHub sources, or explore 14+ packs in the Dashboard.</p>
+        </div>
+        <button type="button" class="w-nav-btn secondary" id="openPacksTabBtn">All 14+ Community Packs ↗</button>
+      </div>
+      <div id="welcomeCreedChips" class="pack-chips-grid"></div>
+      <div id="welcomeCreedStatus" class="w-status-line" style="display:none;"></div>
+    </section>
+
+    <!-- Quick Customizer & Live Preview -->
+    <section class="w-card">
+      <div class="w-card-head">
+        <div>
+          <h3>Customize Your Look</h3>
+          <p class="w-card-sub">Changes save automatically and apply across every webpage.</p>
+        </div>
+      </div>
+
+      <div class="w-customizer-grid">
+        <div class="w-controls-col">
+          <div class="form-row">
+            <div class="form-label-group"><label for="wTheme">Theme</label></div>
+            <select id="wTheme" class="dash-select">
+              <option value="auto">Auto (System)</option>
+              <option value="light">Crisp Light</option>
+              <option value="dark">OLED Dark</option>
+              <option value="sepia">Warm Sepia</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-label-group"><label for="wFont">Card Font</label></div>
+            <select id="wFont" class="dash-select">
+              <option value="sans">Modern Sans</option>
+              <option value="serif">Classic Serif (Georgia)</option>
+              <option value="garamond">Elegant Garamond</option>
+              <option value="dyslexic">Dyslexia-Friendly</option>
+              <option value="mono">Study Monospace</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-label-group"><label for="wUnderline">Underline Style</label></div>
+            <select id="wUnderline" class="dash-select">
+              <option value="dotted">Dotted Underline</option>
+              <option value="dashed">Dashed Underline</option>
+              <option value="solid">Solid Underline</option>
+              <option value="highlight">Subtle Highlight</option>
+              <option value="none">Hover Only</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-label-group"><label>Accent Color</label></div>
+            <div class="color-swatches">
+              <button type="button" class="swatch" data-color="#9f1239" style="background:#9f1239;" title="Burgundy"></button>
+              <button type="button" class="swatch" data-color="#b45309" style="background:#b45309;" title="Amber"></button>
+              <button type="button" class="swatch" data-color="#059669" style="background:#059669;" title="Emerald"></button>
+              <button type="button" class="swatch" data-color="#4f46e5" style="background:#4f46e5;" title="Indigo"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-preview-col">
+          <div class="ch-preview-card theme-light font-medium font-family-sans" id="welcomePreviewCard">
+            <div class="ch-preview-header">
+              <div class="ch-title-group">
+                <span class="ch-ref-title">HC Q. 1</span>
+                <span class="ch-badge" id="wPreviewBadge">HC</span>
+              </div>
+              <div class="ch-actions"><span class="ch-btn-mock">Copy</span></div>
+            </div>
+            <div class="ch-preview-subbar">Lord's Day 1</div>
+            <div class="ch-preview-body">
+              <div style="font-weight:700; margin-bottom:6px;"><span style="color:#9f1239;" id="wQTag">Q.1</span> What is your only comfort in life and death?</div>
+              <div><span style="color:#9f1239; font-weight:700;" id="wATag">A.</span> That I am not my own, but belong with body and soul, both in life and in death, to my faithful Saviour Jesus Christ.</div>
+            </div>
+            <div class="ch-preview-footer">
+              <div>Heidelberg Catechism (1563)</div>
+              <div><span class="ch-link-btn">📖 Drawer</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Bottom Action Bar -->
+  <div class="w-bottom-bar">
+    <div class="w-bottom-inner">
+      <span class="w-bottom-text">Ready to see citations come alive?</span>
+      <div class="w-bottom-btns">
+        <button type="button" class="w-nav-btn secondary" id="bottomDashboardBtn">Open Settings Dashboard</button>
+        <button type="button" class="w-nav-btn primary" id="bottomLaunchBtn">Test Confessions Live →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../shared/confession-schema.js"></script>
+  <script src="../shared/confession-registry.js"></script>
+  <script src="welcome.js"></script>
+</body>
+</html>

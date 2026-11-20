@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confession Hover — Live Verification Page</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+      max-width: 820px;
+      margin: 40px auto;
+      padding: 0 20px 60px;
+      line-height: 1.72;
+      color: #1f2937;
+      background: #faf9f9;
+    }
+    h1 { font-size: 28px; margin-bottom: 6px; color: #18181b; }
+    p { margin-bottom: 16px; font-size: 16px; }
+    .card {
+      background: #ffffff;
+      padding: 22px 24px;
+      border-radius: 12px;
+      border: 1px solid #e4e4e7;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 22px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 4px;
+      background: #ffe4e6;
+      color: #9f1239;
+      margin-bottom: 10px;
+    }
+    .badge.trap {
+      background: #f4f4f5;
+      color: #52525b;
+    }
+    button.dynamic-btn {
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      background: #9f1239;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button.dynamic-btn:hover { background: #881337; }
+    code { background: #f4f4f5; padding: 2px 5px; border-radius: 4px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>Confession Hover — Verification Page</h1>
+  <p>Hover over any underlined citation below to verify 0ms offline lookups, Lord's Days, Dort Rejection of Errors, ranges, Roman numerals, side reader drawer, and Bible Hover coexistence.</p>
+
+  <div class="card">
+    <div class="badge">Westminster Standards (WCF, WLC, WSC)</div>
+    <p>
+      • Chapter &amp; Section: <strong>WCF 1.2</strong>, colon variant <strong>WCF 1:2</strong>, and full name <strong>Westminster Confession of Faith 3.1</strong>.<br>
+      • Roman numerals &amp; ranges: <strong>WCF III.2</strong>, <strong>WCF I.ii</strong>, <strong>WCF 1.6–8</strong>, and chained <strong>WCF 1.2, 4; 2.1</strong>.<br>
+      • Whole chapter: <strong>WCF 1</strong> (all 10 sections).<br>
+      • Catechisms: <strong>WLC 7</strong> and <strong>WSC 1</strong>.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Three Forms of Unity (HC, Belgic Confession, Canons of Dort)</div>
+    <p>
+      • Heidelberg Catechism: <strong>HC 26</strong>, <strong>Heidelberg Catechism Q. 1</strong>, <strong>HC 26, 27</strong>.<br>
+      • Lord's Days: <strong>Lord's Day 12</strong>, <strong>Lord’s Day 1</strong>, and <strong>Lord's Day XII</strong>.<br>
+      • Belgic Confession: <strong>Belgic Confession Art. 33</strong> and <strong>BC Art. 33</strong>.<br>
+      • Canons of Dort: <strong>Canons of Dort 1.7</strong>, combined Head 3/4 <strong>Canons of Dort III/IV.3</strong>, Head 5 <strong>Dort 5.15</strong>, and Rejection of Errors <strong>Canons of Dort 1.R.3</strong> &amp; <strong>Dort 1, Error 3</strong>.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge">1689 London Baptist Confession (2LBCF)</div>
+    <p>
+      • Standard citations: <strong>2LBCF 26.1</strong>, <strong>1689 London Baptist Confession 1.1</strong>, and range <strong>1689 Confession 26.1-3</strong>.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Context-Aware Short Aliases &amp; Optional Community Packs</div>
+    <p>
+      Because this page has Reformed theological context, short aliases activate automatically in Context-Aware mode:
+      <strong>BC 33</strong>, <strong>CD 1.7</strong>, <strong>LD 12</strong>, <strong>SC 1</strong>, <strong>LC 7</strong>, and <strong>1689 26.1</strong>.<br>
+      If you added the 1-click Ecumenical Creeds packs, hover <strong>Apostles' Creed</strong> or <strong>Nicene Creed</strong> here too!
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge trap">False-Positive Traps (Should NOT Be Underlined)</div>
+    <p>
+      Verify that none of these non-citations or out-of-bounds citations are tagged:<br>
+      • Historical eras &amp; roads: <strong>500 BC 33</strong>, Julius Caesar in <strong>44 BC 12</strong> months later, and <strong>BC Highway 33</strong>.<br>
+      • Out-of-bounds references: <strong>WCF 4.5</strong> (Ch. 4 only has 2 sections), <strong>HC 200</strong>, <strong>Lord's Day 53</strong>, <strong>BC Art. 38</strong>, <strong>Canons of Dort 6.1</strong>.<br>
+      • Code blocks ignored: <code>WCF 1.2</code> and <code>HC 26</code>.<br>
+      • Bare English pronoun: In <strong>Heidelberg I</strong> visited the castle, and at <strong>Dort I</strong> found good coffee.
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Bible Hover Coexistence Check</div>
+    <p>
+      If you also run <strong>Bible Hover</strong>, Scripture references like <strong>John 3:16</strong> and <strong>Romans 8:28</strong> will display in Bible Hover's blue while <strong>WCF 1.2</strong> and <strong>HC 1</strong> display in Confession Hover's deep burgundy!
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="badge">Dynamic Content (SPA / MutationObserver Test)</div>
+    <p>Click the button below to inject new confessional citations dynamically without reloading:</p>
+    <button class="dynamic-btn" id="addDynamicContent">Inject Dynamic Confessional Citation</button>
+    <div id="dynamicContainer" style="margin-top: 14px;"></div>
+  </div>
+
+  <script src="shared/confession-schema.js"></script>
+  <script src="shared/confession-registry.js"></script>
+  <script src="scripts/content.js"></script>
+  <script src="test-page.js"></script>
+</body>
+</html>

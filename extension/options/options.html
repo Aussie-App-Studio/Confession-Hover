@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confession Hover — Settings &amp; Dashboard</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="dash-layout">
+    <!-- Top Header -->
+    <header class="dash-header">
+      <div class="dash-brand">
+        <img src="../icons/icon48.png" alt="Confession Hover Logo" class="dash-logo">
+        <div>
+          <h1 class="dash-title">Confession Hover Dashboard</h1>
+          <p class="dash-subtitle">Appearance, confessional standards, 1-click community packs &amp; offline storage</p>
+        </div>
+      </div>
+      <div class="dash-header-controls">
+        <a href="../test-page.html" class="dash-feedback-btn" id="headerTestPageLink" title="Open Live Verification Page">
+          <span>🧪 Test Page ↗</span>
+        </a>
+        <div id="saveToast" class="save-toast" style="opacity: 0;">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M5 13l4 4L19 7"/></svg>
+          <span>Saved</span>
+        </div>
+        <div class="global-switch-card">
+          <span class="global-switch-label" id="globalStatusLabel">Extension Active</span>
+          <label class="switch" title="Toggle Confession Hover on/off globally">
+            <input type="checkbox" id="globalToggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="dash-body">
+      <aside class="dash-sidebar">
+        <nav class="nav-list">
+          <button class="nav-item active" data-tab="tab-appearance">
+            <svg viewBox="0 0 24 24"><path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+            <span>Appearance &amp; Preview</span>
+          </button>
+          <button class="nav-item" data-tab="tab-documents">
+            <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span>Standards &amp; Ambiguity</span>
+          </button>
+          <button class="nav-item" data-tab="tab-packs">
+            <svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            <span>Community Packs (1-Click)</span>
+          </button>
+          <button class="nav-item" data-tab="tab-sites">
+            <svg viewBox="0 0 24 24"><path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+            <span>Disabled Sites</span>
+          </button>
+          <button class="nav-item" data-tab="tab-sandbox">
+            <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <span>Citation Sandbox</span>
+          </button>
+          <a href="../welcome/welcome.html" class="nav-item nav-item-external">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span>Welcome &amp; Creator Story ↗</span>
+          </a>
+          <a href="../test-page.html" class="nav-item nav-item-external">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Live Test Page ↗</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-feedback-box">
+          <div class="sidebar-share-card">
+            <div class="ssc-top">
+              <span class="ssc-badge">❤️ FREE &amp; OPEN SOURCE</span>
+              <span class="ssc-title">Companion to Bible Hover</span>
+            </div>
+            <p class="ssc-desc">Built by Aussie-App-Studio for pastors, seminarians, and students of historic Reformed theology.</p>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-stat">
+            <span class="stat-dot green"></span>
+            <span>100% Offline Capable</span>
+          </div>
+          <span class="version-text">v1.0.0</span>
+        </div>
+      </aside>
+
+      <!-- Panels -->
+      <main class="dash-main">
+        <!-- TAB 1: Appearance & Preview -->
+        <section class="tab-pane active" id="tab-appearance">
+          <div class="pane-header">
+            <h2>Appearance &amp; Real-Time Preview</h2>
+            <p>Customize hover popup themes, typography, underline styling, and card behavior.</p>
+          </div>
+
+          <div class="appearance-grid">
+            <div class="settings-card">
+              <h3 class="card-title">Display Settings</h3>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="themeSelect">Theme</label>
+                  <span class="form-desc">Color palette for cards and side reader drawer</span>
+                </div>
+                <select id="themeSelect" class="dash-select">
+                  <option value="auto">Auto (Match System)</option>
+                  <option value="light">Crisp Light</option>
+                  <option value="dark">OLED Dark</option>
+                  <option value="sepia">Warm Sepia (Book Style)</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="fontSizeSelect">Font Size</label>
+                  <span class="form-desc">Text readability inside hover cards</span>
+                </div>
+                <select id="fontSizeSelect" class="dash-select">
+                  <option value="small">Compact (13px)</option>
+                  <option value="medium">Default (14.5px)</option>
+                  <option value="large">Spacious (16px)</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="bodyFont">Confessional Font Family</label>
+                  <span class="form-desc">Typography for body text (UI chrome stays clean sans)</span>
+                </div>
+                <select id="bodyFont" class="dash-select">
+                  <option value="sans">Modern Sans (Default)</option>
+                  <option value="serif">Classic Book Serif (Georgia)</option>
+                  <option value="garamond">Elegant Garamond</option>
+                  <option value="humanist">Humanist Sans (Calibri)</option>
+                  <option value="dyslexic">Dyslexia-Friendly</option>
+                  <option value="mono">Study Monospace</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="underlineStyle">Citation Underline Style</label>
+                  <span class="form-desc">How detected citations appear on webpages</span>
+                </div>
+                <select id="underlineStyle" class="dash-select">
+                  <option value="dotted">Dotted Underline</option>
+                  <option value="dashed">Dashed Underline</option>
+                  <option value="solid">Solid Underline</option>
+                  <option value="highlight">Subtle Color Highlight</option>
+                  <option value="none">No Underline (Hover Only)</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label>Accent Color</label>
+                  <span class="form-desc">Defaults to Burgundy so it stands apart from Bible Hover's blue</span>
+                </div>
+                <div class="color-picker-row">
+                  <input type="color" id="underlineColor" value="#9f1239" class="dash-color-input">
+                  <div class="color-swatches">
+                    <button type="button" class="swatch" data-color="#9f1239" style="background:#9f1239;" title="Burgundy (Default)"></button>
+                    <button type="button" class="swatch" data-color="#b45309" style="background:#b45309;" title="Warm Amber"></button>
+                    <button type="button" class="swatch" data-color="#059669" style="background:#059669;" title="Emerald"></button>
+                    <button type="button" class="swatch" data-color="#4f46e5" style="background:#4f46e5;" title="Royal Indigo"></button>
+                    <button type="button" class="swatch" data-color="#dc2626" style="background:#dc2626;" title="Crimson"></button>
+                    <button type="button" class="swatch" data-color="#475569" style="background:#475569;" title="Slate"></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="hoverDelay">Hover Trigger Delay</label>
+                  <span class="form-desc">Milliseconds before card appears on hover</span>
+                </div>
+                <div class="range-group">
+                  <input type="range" id="hoverDelay" min="50" max="600" step="25" value="120" class="dash-range">
+                  <span id="hoverDelayVal" class="range-badge">120ms</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-label-group">
+                  <label for="scanMode">Scanning Mode</label>
+                  <span class="form-desc">Automatic tags references on load; On-Selection looks up highlighted text only</span>
+                </div>
+                <select id="scanMode" class="dash-select">
+                  <option value="auto">Automatic (Default)</option>
+                  <option value="selection">On-Selection / On-Demand</option>
+                </select>
+              </div>
+
+              <div class="form-row toggle-row">
+                <div class="form-label-group">
+                  <label for="showExternalLinks">Show External "Read Online ↗" Link</label>
+                  <span class="form-desc">Includes a quick link in the card footer to read the full standard online</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="showExternalLinks" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="form-row toggle-row">
+                <div class="form-label-group">
+                  <label for="showSettingsButton">Show Settings Icon on Cards</label>
+                  <span class="form-desc">Quick gear icon in hover cards &amp; drawers</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="showSettingsButton" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <div class="form-row toggle-row">
+                <div class="form-label-group">
+                  <label for="minimalistMode">Pure Text Mode (Minimalist)</label>
+                  <span class="form-desc">Hides badges, buttons, and footers for distraction-free reading. Click text to copy.</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="minimalistMode">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="settings-card preview-card-box">
+              <div class="preview-header">
+                <h3 class="card-title">Live Preview</h3>
+                <div class="preview-sample-tabs">
+                  <button type="button" class="dash-mini-btn active" id="previewSampleWcf">WCF 1.2</button>
+                  <button type="button" class="dash-mini-btn" id="previewSampleHc">HC Q. 1</button>
+                </div>
+              </div>
+              <p class="card-desc">Real-time simulation of your Confession Hover card:</p>
+
+              <div class="sample-web-text">
+                Hover sample: The authority of Scripture is affirmed in <span class="sample-ref-anchor" id="sampleAnchor">WCF 1.2</span> alongside <span style="text-decoration:underline dotted #3b82f6; color:#3b82f6; font-weight:600;" title="Bible Hover citation">2 Tim 3:16</span>.
+              </div>
+
+              <div class="live-tooltip-container">
+                <div class="ch-preview-card theme-light font-medium font-family-sans" id="previewCard">
+                  <div class="ch-preview-header">
+                    <div class="ch-title-group">
+                      <span class="ch-ref-title" id="previewTitle">WCF 1.2</span>
+                      <span class="ch-badge" id="previewBadge">WCF</span>
+                    </div>
+                    <div class="ch-actions">
+                      <span class="ch-btn-mock" id="previewSettingsWrapper">⚙</span>
+                      <span class="ch-btn-mock">Copy</span>
+                    </div>
+                  </div>
+                  <div class="ch-preview-subbar" id="previewSubbar">Ch. 1: Of the Holy Scripture</div>
+                  <div class="ch-preview-body" id="previewBody"></div>
+                  <div class="ch-preview-footer" id="previewFooter">
+                    <div id="previewFooterLeft">Westminster Confession (1647)</div>
+                    <div class="ch-preview-footer-right">
+                      <span class="ch-link-btn">Full Chapter 1</span>
+                      <span class="ch-link-btn">📖 Drawer</span>
+                      <span class="ch-link-btn" id="previewExternalLink">Read Online ↗</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: Standards & Ambiguity -->
+        <section class="tab-pane" id="tab-documents">
+          <div class="pane-header">
+            <h2>Standards &amp; Ambiguity Controls</h2>
+            <p>Enable or disable individual confessions and tune how ambiguous short abbreviations are handled.</p>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="card-title">Short &amp; Ambiguous Abbreviations</h3>
+            <p class="card-desc">Abbreviations like <strong>BC</strong> (Belgic Confession vs. 500 BC), <strong>CD</strong> (Canons of Dort vs. compact disc), <strong>LD</strong>, <strong>SC</strong>, <strong>LC</strong>, and <strong>1689</strong> can appear in non-theological pages.</p>
+
+            <div class="comm-modes-grid" id="ambiguityGrid">
+              <label class="comm-mode-card" data-mode="context">
+                <input type="radio" name="riskyAliasMode" value="context">
+                <div class="mode-icon">🧠</div>
+                <span class="mode-name">Context-Aware (Recommended)</span>
+                <span class="mode-desc">Matches short aliases like <code>BC 33</code> or <code>CD 1.7</code> only when theological context or explicit markers (<code>BC Art. 33</code>) are present. Automatically suppresses <code>500 BC</code> and <code>.NET WCF</code>.</span>
+              </label>
+
+              <label class="comm-mode-card" data-mode="strict">
+                <input type="radio" name="riskyAliasMode" value="strict">
+                <div class="mode-icon">🛡️</div>
+                <span class="mode-name">Strict (Explicit Cues Only)</span>
+                <span class="mode-desc">Short aliases match only when paired with a structural marker like <code>BC Art. 33</code>, <code>SC Q. 1</code>, or <code>CD 3/4.3</code>. Full names &amp; safe abbreviations (<code>WCF</code>, <code>HC</code>, <code>2LBCF</code>) always match.</span>
+              </label>
+
+              <label class="comm-mode-card" data-mode="always">
+                <input type="radio" name="riskyAliasMode" value="always">
+                <div class="mode-icon">⚡</div>
+                <span class="mode-name">Always Match Short Aliases</span>
+                <span class="mode-desc">Matches any in-bounds short alias on non-excluded websites (still blocks <code>500 BC</code>).</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top:20px;">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">Active Standards &amp; Documents</h3>
+                <p class="card-desc">Uncheck any document you don't want detected on webpages.</p>
+              </div>
+              <button type="button" id="btnEnableAllDocs" class="dash-mini-btn">Enable All</button>
+            </div>
+            <div id="docsGrid" class="trans-cards-grid"></div>
+          </div>
+        </section>
+
+        <!-- TAB 3: Community Packs (1-Click) -->
+        <section class="tab-pane" id="tab-packs">
+          <div class="pane-header">
+            <h2>Community Packs &amp; Extra Standards</h2>
+            <p>Click any chip below to add classic ecumenical creeds, Reformed confessions, or Baptist catechisms in one click from GitHub — or import any custom JSON pack.</p>
+          </div>
+
+          <div class="stats-cards-grid">
+            <div class="stat-card">
+              <span class="stat-number green">0ms</span>
+              <span class="stat-title">7 Bundled Standards</span>
+              <span class="stat-subtitle">HC, BC, Dort, WCF, WLC, WSC, 2LBCF</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number accent" id="statInstalledPacks">0</span>
+              <span class="stat-title">Installed Community Packs</span>
+              <span class="stat-subtitle">Stored locally in IndexedDB</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number slate" id="statTotalEntries">794</span>
+              <span class="stat-title">Total Offline Entries</span>
+              <span class="stat-subtitle">Zero trackers, 100% private</span>
+            </div>
+          </div>
+
+          <!-- 1-Click Chips Catalog -->
+          <div class="settings-card" style="margin-top:20px;">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">1-Click Public Domain Community Packs</h3>
+                <p class="card-desc">Sourced directly from <a href="https://github.com/NonlinearFruit/Creeds.json" target="_blank" rel="noopener noreferrer" class="inline-link">NonlinearFruit/Creeds.json ↗</a> (Unlicense / Public Domain). Click a chip to install or remove.</p>
+              </div>
+              <span id="packActionStatus" class="pack-status-pill" style="display:none;"></span>
+            </div>
+
+            <div id="catalogCategoriesContainer"></div>
+          </div>
+
+          <!-- Custom URL & File Import -->
+          <div class="settings-card" style="margin-top:20px;">
+            <h3 class="card-title">Import Custom Pack (Modern Translations or Personal Packs)</h3>
+            <p class="card-desc">Want to use a modern-English edition or another confession? Paste any raw JSON URL or drop a <code>.json</code> file below.</p>
+
+            <div class="add-site-row" style="margin-bottom:14px;">
+              <input type="url" id="customUrlInput" placeholder="https://raw.githubusercontent.com/.../my_confession.json" class="dash-input" style="flex:1;">
+              <button type="button" id="customUrlImportBtn" class="dash-btn primary">Import from URL</button>
+            </div>
+
+            <div id="dropZone" class="drop-zone">
+              <input type="file" id="jsonFileInput" accept=".json,application/json" style="display:none;">
+              <div class="drop-zone-icon">📄</div>
+              <div class="drop-zone-text"><strong>Drop a <code>.json</code> pack file here</strong> or <button type="button" id="browseFileBtn" class="inline-btn-link">browse your computer</button></div>
+              <div class="drop-zone-sub">Supports both Confession Hover Pack v1 JSON and NonlinearFruit/Creeds.json files</div>
+            </div>
+
+            <div id="importFeedback" class="dash-alert" style="display:none; margin-top:12px;"></div>
+          </div>
+
+          <!-- Installed Custom Packs List -->
+          <div class="settings-card" style="margin-top:20px;">
+            <h3 class="card-title">Installed Community &amp; Custom Packs</h3>
+            <p class="card-desc">Export a shareable Confession Hover JSON pack or remove packs anytime.</p>
+            <div id="installedPacksList" class="offline-table-container"></div>
+          </div>
+
+          <!-- Schema Guide -->
+          <div class="settings-card" style="margin-top:20px;">
+            <details class="schema-details">
+              <summary class="schema-summary">📘 Shareable Community Pack JSON Format Guide</summary>
+              <div class="schema-body">
+                <p>Anyone can create and share a Confession Hover pack as a single <code>.json</code> file:</p>
+                <pre class="schema-pre">{
+  "id": "my_confession",
+  "name": "My Modern Confession",
+  "shortName": "MMC",
+  "year": "2024",
+  "aliases": ["My Modern Confession", "MMC"],
+  "structure": "chapter_section",
+  "chapters": { "1": "Of Holy Scripture" },
+  "entries": {
+    "1.1": "Holy Scripture is the supreme standard...",
+    "1.2": "The whole counsel of God..."
+  }
+}</pre>
+                <p>Supported <code>structure</code> values: <code>"chapter_section"</code> (<code>"1.2"</code>), <code>"catechism"</code> (<code>"26"</code> with <code>{"question":"...","answer":"..."}</code> or plain text), <code>"article"</code> (<code>"33"</code>), <code>"dort"</code> (<code>"1.A7"</code>, <code>"1.R3"</code>), and <code>"creed"</code> (<code>"1"</code>).</p>
+                <button type="button" id="downloadTemplateBtn" class="dash-btn" style="margin-top:8px;">⬇ Download Sample Pack Template</button>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- TAB 4: Disabled Sites -->
+        <section class="tab-pane" id="tab-sites">
+          <div class="pane-header">
+            <h2>Disabled Sites (Blocklist)</h2>
+            <p>Manage domains where Confession Hover stays paused automatically.</p>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="card-title">Add Disabled Website</h3>
+            <div class="add-site-row">
+              <input type="text" id="addDomainInput" placeholder="example.com or docs.microsoft.com" class="dash-input" style="flex:1;">
+              <button id="addDomainBtn" class="dash-btn primary">Add Site</button>
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top:20px;">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">Currently Disabled Websites</h3>
+                <p class="card-desc">Developer portals (GitHub, StackOverflow, Microsoft Learn — preventing <code>.NET WCF</code> collisions), Google Docs/Sheets editors, and major full-text confession sites are paused by default.</p>
+              </div>
+              <button type="button" id="restoreDefaultDomainsBtn" class="dash-mini-btn">Restore Defaults</button>
+            </div>
+            <div id="disabledSitesList" class="disabled-sites-list"></div>
+          </div>
+        </section>
+
+        <!-- TAB 5: Citation Sandbox -->
+        <section class="tab-pane" id="tab-sandbox">
+          <div class="pane-header">
+            <h2>Citation Sandbox &amp; Parser Tester</h2>
+            <p>Look up any citation directly or paste a paragraph to see which references Confession Hover detects.</p>
+          </div>
+
+          <div class="settings-card">
+            <h3 class="card-title">Direct Citation Lookup</h3>
+            <div class="sandbox-search-row">
+              <input type="text" id="sandboxInput" placeholder="Try: WCF 1.2, HC 26, Lord's Day 12, BC Art. 33, Canons of Dort 3/4.3, 2LBCF 26.1..." class="dash-input" style="flex:1;">
+              <button id="sandboxSearchBtn" class="dash-btn primary">Lookup</button>
+            </div>
+
+            <div id="sandboxResultBox" class="sandbox-result-box" style="display:none; margin-top:16px;">
+              <div class="sandbox-result-header">
+                <div>
+                  <h3 id="sandboxResultTitle" class="sandbox-title"></h3>
+                  <span id="sandboxResultSubtitle" class="sandbox-source-badge"></span>
+                </div>
+                <div class="sandbox-actions">
+                  <button id="sandboxContextBtn" class="dash-mini-btn">Full Context</button>
+                  <button id="sandboxCopyBtn" class="dash-mini-btn">Copy</button>
+                </div>
+              </div>
+              <div id="sandboxResultBody" class="sandbox-body"></div>
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top:20px;">
+            <div class="card-header-flex">
+              <div>
+                <h3 class="card-title">Paragraph Detection Tester</h3>
+                <p class="card-desc">Test your current Ambiguity setting (<strong><span id="sandboxAmbiguityLabel">Context-Aware</span></strong>) on mixed prose and traps:</p>
+              </div>
+              <button type="button" id="sandboxScanBtn" class="dash-btn primary">Run Detector</button>
+            </div>
+            <textarea id="sandboxParagraphInput" class="sandbox-textarea" rows="4">In Reformed theology, compare WCF 1.2 and 2LBCF 26.1 with Heidelberg Catechism Q. 26, Lord's Day 12, BC 33, and Canons of Dort III/IV.3 or 1.R.3. False-positive traps: 500 BC 33, BC Highway 33, WCF 4.5, HC 200, and LD 53 should be ignored.</textarea>
+            <div id="sandboxMatchesList" class="sandbox-matches-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../shared/confession-schema.js"></script>
+  <script src="../shared/confession-registry.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

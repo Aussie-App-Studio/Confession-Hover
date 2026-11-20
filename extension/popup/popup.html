@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confession Hover</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-area">
+        <img src="../icons/icon32.png" alt="Confession Hover Logo" class="app-icon">
+        <div>
+          <h1 class="app-title">Confession Hover</h1>
+          <p class="app-subtitle">Instant Confessional Previews</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="openDashboardBtn" class="icon-header-btn" title="Open Settings Dashboard">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"></path>
+          </svg>
+        </button>
+        <label class="switch" title="Toggle Confession Hover on/off">
+          <input type="checkbox" id="globalToggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Quick Reference Lookup -->
+    <section class="section search-section">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Lookup (e.g. WCF 1.2, HC 26, LD 12, Dort 3/4.3)..." spellcheck="false" autocomplete="off">
+        <button id="searchBtn" title="Lookup">
+          <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        </button>
+      </div>
+      <div id="quickResult" class="quick-result" style="display: none;">
+        <div class="result-header">
+          <span id="resultTitle" class="result-title"></span>
+          <button id="resultCopyBtn" class="mini-btn">Copy</button>
+        </div>
+        <div id="resultBody" class="result-body"></div>
+      </div>
+    </section>
+
+    <!-- Site-Specific Power Toggle -->
+    <section class="section site-section">
+      <div class="site-card" id="siteCard">
+        <button type="button" id="sitePowerBtn" class="site-power-btn" title="Click to toggle Confession Hover on this website" aria-label="Toggle Confession Hover on this website">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+            <line x1="12" y1="2" x2="12" y2="12"></line>
+          </svg>
+        </button>
+        <div class="site-details" id="siteDetailsClickArea" title="Click to toggle Confession Hover for this website">
+          <div class="site-label-row">
+            <span class="site-label" id="siteLabel">Current Website</span>
+          </div>
+          <span id="currentDomain" class="site-domain">loading...</span>
+          <div class="site-status-row">
+            <span class="site-status-dot" id="siteStatusDot"></span>
+            <span id="siteStatusText" class="site-status-text">Checking site...</span>
+          </div>
+        </div>
+        <div class="site-switch-col">
+          <label class="switch site-toggle-switch" title="Toggle Confession Hover on this website">
+            <input type="checkbox" id="siteToggleSwitch" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div id="siteNoticeCard" class="site-notice-card" style="display: none;"></div>
+    </section>
+
+    <!-- Preferences -->
+    <section class="section settings-section">
+      <h2 class="section-title">Preferences</h2>
+
+      <div class="setting-row">
+        <label for="riskyAliasMode">Short Alias Detection</label>
+        <select id="riskyAliasMode" class="select-input">
+          <option value="context">Context-Aware (Smart)</option>
+          <option value="strict">Strict (Explicit Cues)</option>
+          <option value="always">Always Match Short</option>
+        </select>
+      </div>
+
+      <div class="settings-grid-2col">
+        <div class="grid-field">
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect" class="select-input">
+            <option value="auto">Auto (System)</option>
+            <option value="light">Crisp Light</option>
+            <option value="dark">OLED Dark</option>
+            <option value="sepia">Warm Sepia</option>
+          </select>
+        </div>
+
+        <div class="grid-field">
+          <label for="bodyFont">Card Font</label>
+          <select id="bodyFont" class="select-input">
+            <option value="sans">Modern Sans</option>
+            <option value="serif">Classic Serif (Georgia)</option>
+            <option value="garamond">Elegant Garamond</option>
+            <option value="humanist">Humanist Sans</option>
+            <option value="dyslexic">Dyslexia-Friendly</option>
+            <option value="mono">Study Monospace</option>
+          </select>
+        </div>
+
+        <div class="grid-field">
+          <label for="fontSizeSelect">Font Size</label>
+          <select id="fontSizeSelect" class="select-input">
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
+
+        <div class="grid-field">
+          <label for="underlineStyle">Underline Style</label>
+          <select id="underlineStyle" class="select-input">
+            <option value="dotted">Dotted Underline</option>
+            <option value="dashed">Dashed Underline</option>
+            <option value="solid">Solid Underline</option>
+            <option value="highlight">Subtle Highlight</option>
+            <option value="none">No Underline (Hover Only)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <label for="underlineColor">Accent Color</label>
+        <div class="color-picker-group">
+          <input type="color" id="underlineColor" value="#9f1239" class="color-input">
+          <div class="color-presets">
+            <span class="color-preset" data-color="#9f1239" style="background:#9f1239;" title="Burgundy"></span>
+            <span class="color-preset" data-color="#b45309" style="background:#b45309;" title="Amber"></span>
+            <span class="color-preset" data-color="#059669" style="background:#059669;" title="Emerald"></span>
+            <span class="color-preset" data-color="#4f46e5" style="background:#4f46e5;" title="Indigo"></span>
+            <span class="color-preset" data-color="#475569" style="background:#475569;" title="Slate"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <label for="showExternalLinks" style="font-weight: 600; cursor: pointer;">Footer External Links</label>
+          <p class="setting-hint" style="margin-top: 1px;">Show "Read Online ↗" button in cards</p>
+        </div>
+        <label class="switch mini-switch">
+          <input type="checkbox" id="showExternalLinks" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <label for="showSettingsButton" style="font-weight: 600; cursor: pointer;">Settings Icon on Cards</label>
+          <p class="setting-hint" style="margin-top: 1px;">Show quick settings gear icon in popups</p>
+        </div>
+        <label class="switch mini-switch">
+          <input type="checkbox" id="showSettingsButton" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="setting-row">
+        <div>
+          <label for="minimalistMode" style="font-weight: 600; cursor: pointer;">Pure Text Mode (Minimalist)</label>
+          <p class="setting-hint" style="margin-top: 1px;">Hides buttons, footers &amp; badges</p>
+        </div>
+        <label class="switch mini-switch">
+          <input type="checkbox" id="minimalistMode">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Offline Standards & Community Packs -->
+    <section class="section offline-section">
+      <h2 class="section-title">Standards &amp; Community Packs</h2>
+      <div class="offline-status-box">
+        <div class="status-item">
+          <span class="status-label">Core Bundled (0ms):</span>
+          <span class="status-val highlight">7 Reformed Standards</span>
+        </div>
+        <div class="status-item">
+          <span class="status-label">Community Packs:</span>
+          <span id="installedPacksCount" class="status-val">0 installed</span>
+        </div>
+      </div>
+      <button type="button" id="managePacksBtn" class="pill-btn primary" style="width:100%; padding:8px 12px; font-size:12px;">
+        Add 1-Click Packs &amp; Manage Docs →
+      </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#" id="footerWelcomeLink" class="footer-link-btn" title="Open Welcome & Quick Setup">
+          <span>👋 Welcome ↗</span>
+        </a>
+        <a href="#" id="footerTestPageLink" class="footer-link-btn" title="Open Live Verification Page">
+          <span>🧪 Test Page ↗</span>
+        </a>
+        <a href="#" id="footerDashboardLink" class="footer-link-btn" title="Open Full Dashboard">
+          <span>⚙ Dashboard ↗</span>
+        </a>
+      </div>
+      <div class="footer-meta">Confession Hover • 100% Offline Capable</div>
+    </footer>
+  </div>
+
+  <script src="../shared/confession-schema.js"></script>
+  <script src="../shared/confession-registry.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

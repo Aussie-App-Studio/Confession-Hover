@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Confession Hover</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      color: #1f2937;
+      max-width: 760px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background-color: #f9fafb;
+    }
+    .card {
+      background: #ffffff;
+      padding: 36px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid #e5e7eb;
+    }
+    h1 { font-size: 26px; color: #111827; margin-bottom: 6px; }
+    .updated { color: #6b7280; font-size: 14px; margin-bottom: 24px; }
+    h2 { font-size: 18px; color: #9f1239; margin-top: 24px; margin-bottom: 10px; border-bottom: 1px solid #f3f4f6; padding-bottom: 6px; }
+    p, li { font-size: 15px; color: #374151; }
+    ul { padding-left: 20px; margin-bottom: 16px; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 13.5px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Privacy Policy for Confession Hover</h1>
+    <div class="updated">Effective Date: November 20, 2026</div>
+
+    <p>Confession Hover ("we", "our", or "the extension") is committed to respecting your privacy. The extension is engineered to run completely locally in your browser without telemetry, user tracking, analytics, advertisements, or external data collection.</p>
+
+    <h2>1. Information We Do Not Collect</h2>
+    <p>Confession Hover does <strong>not</strong> collect, log, sell, share, or transmit:</p>
+    <ul>
+      <li>Your browsing history, visited URLs, or webpage contents</li>
+      <li>Search queries or hover lookups you perform in the popup, options dashboard, or on webpages</li>
+      <li>Personal identifiers, account credentials, IP addresses, or device telemetry</li>
+      <li>Analytics, crash reports, or third-party tracking cookies</li>
+    </ul>
+
+    <h2>2. Offline Text Storage &amp; Community Packs</h2>
+    <ul>
+      <li><strong>Bundled Standards (0ms Offline):</strong> The 8 core standards (Westminster Confession of Faith 1647, Westminster Larger Catechism, Westminster Shorter Catechism, Heidelberg Catechism, Belgic Confession, Canons of Dort, 1689 London Baptist Confession, and CRCA Book of Order 2022) are bundled directly inside the extension package and never require network requests.</li>
+      <li><strong>1-Click Community Packs:</strong> When you click a community pack chip in Settings, the extension fetches that single static JSON file directly from <code>raw.githubusercontent.com</code> using standard CORS without requiring broad install-time host permissions.</li>
+      <li><strong>Custom URL &amp; Local <code>.json</code> Import:</strong> If you choose to import a pack from a custom <code>https://</code> URL, Chrome prompts you for optional access (<code>optional_host_permissions</code>) solely for that domain so the JSON file can be downloaded. Local <code>.json</code> files imported via file picker or drag-and-drop are read strictly on your device and never uploaded anywhere.</li>
+      <li><strong>Local IndexedDB Storage:</strong> Downloaded and imported community packs are cached locally in your browser's IndexedDB (<code>ConfessionHoverDB</code>) so they load offline afterward.</li>
+    </ul>
+
+    <h2>3. Local Settings (<code>chrome.storage.local</code>)</h2>
+    <p>All extension preferences—such as enabled/disabled state, theme, font family, font size, underline style/color, short-alias detection mode (<code>riskyAliasMode</code>), per-document toggles, disabled domains, and installed pack descriptors—are saved locally via Chrome's <code>chrome.storage.local</code> API and never sent to external servers.</p>
+
+    <h2>4. Permissions Explained</h2>
+    <ul>
+      <li><code>storage</code>: Saves your visual preferences, disabled sites, and pack registry locally.</li>
+      <li><code>activeTab</code>: Allows the popup to read the active tab's hostname so you can pause/resume Confession Hover on the current website (or display guidance on PDFs/Google Docs/local files).</li>
+      <li><code>optional_host_permissions</code> (<code>https://*/*</code>): Requested <strong>only</strong> when you explicitly enter a custom third-party URL to import a community pack JSON file. Install-time host permissions are <strong>none</strong>.</li>
+    </ul>
+
+    <h2>5. Webpage Content &amp; Optional External Links</h2>
+    <p>Confession Hover scans webpage text locally on your device to recognize confessional and church order citations and attach hover preview cards. Webpage contents are processed entirely in memory within your browser and are never logged or sent to any server.</p>
+    <p>Hover cards and the Reader Drawer optionally include a <em>"Read Online ↗"</em> link (for example to <code>reformedstandards.com</code>) when you click it directly. You can hide external links completely at any time from the extension popup or Options Dashboard.</p>
+
+    <h2>6. Open Source Transparency</h2>
+    <p>Confession Hover is free and open-source software licensed under GPL-3.0. If you have privacy questions or want to inspect the source code, you can review the repository directly on GitHub.</p>
+  </div>
+</body>
+</html>

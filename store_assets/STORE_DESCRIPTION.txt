@@ -1,0 +1,34 @@
+Confession Hover — Instant 0ms Confession, Catechism & Creed Previews
+
+Read Reformed & historic Christian theology articles, blog posts, sermons, and study notes without losing your place. Confession Hover detects confessional citations right on the webpage and displays the matching article, Q&A, chapter, or Lord's Day in an instant hover card.
+
+Works seamlessly alongside Bible Hover with a distinct burgundy underline palette and non-interfering DOM scanning.
+
+CORE BUNDLED STANDARDS (100% OFFLINE, 0ms LOOKUP)
+• Westminster Confession of Faith (WCF — classic 1647 text)
+• Westminster Larger Catechism (WLC — 196 Q&As)
+• Westminster Shorter Catechism (WSC — 107 Q&As)
+• Heidelberg Catechism (HC — 129 Q&As & all 52 Lord's Days)
+• Belgic Confession (BC — 37 Articles)
+• Canons of Dort (Heads 1, 2, 3/4, 5 + Rejection of Errors)
+• 1689 London Baptist Confession of Faith (2LBCF / 2LCF)
+
+1-CLICK PUBLIC DOMAIN COMMUNITY PACKS & CUSTOM IMPORT
+Expand your library anytime inside the Options Dashboard:
+• 1-Click Chips (14 Public Domain packs): Apostles' Creed, Nicene Creed, Athanasian Creed, Chalcedonian Definition, Scots Confession, Second Helvetic Confession, Irish Articles, Keach's Baptist Catechism, Catechism for Young Children, Abstract of Principles, Formula of Concord (Epitome), Smalcald Articles, 95 Theses, and The Three Creeds.
+• Custom JSON Packs: Drag & drop your own `.json` pack, import from an HTTPS URL, export installed packs, or restore bundled texts in one click.
+
+SMART CITATION DETECTION & CONTEXT SAFETY
+• Rich Syntax Support: Roman numerals (`WCF I.i`, `WCF III, 2`), Question/Q&A/Answer shorthand (`HC Q&A 26`, `HC A. 26`), `Paragraph` / `par.` / `para.` (`2LBCF 26, par. 1`), Lord's Day citations (`Lord's Day 12, Q&A 31`), Rejection of Errors (`CD 1.R.3`), ranges (`WCF 1.6-8`), comma lists, and semicolon chains (`WCF 1.1; 2.1`).
+• Context-Aware Safeguard: Short ambiguous abbreviations (`BC 33`, `CD 1.7`, `LD 12`, `Dort`, `Heidelberg`, `Belgic`) automatically activate when the surrounding page carries theological/confessional context—preventing false positives on historical dates (`33 BC`), chemistry (`LD50`), geographic distance (`Heidelberg 12 km`), or .NET / Windows Communication Foundation (`WCF 3.5`). Switch freely between Context-Aware, Strict, or Always Match.
+• Default Exclusions: Paused automatically on developer docs and code editors (`github.com`, `stackoverflow.com`, `learn.microsoft.com`, Google Docs/Sheets).
+
+ELEGANT READER EXPERIENCE
+• Themes & Typography: Auto, Crisp Light, OLED Dark, or Warm Sepia themes; 6 readable card fonts (Sans, Georgia Serif, Garamond, Humanist, OpenDyslexic-friendly, Monospace); customizable underline style and accent color.
+• Side Reader Drawer: Open Full Chapter, Full Lord's Day, Full Head (with Rejection of Errors), or 10-Q&A Catechism blocks in a distraction-free slide-out drawer with Prev/Next navigation, one-click Copy feedback, and a Commentaries (v2) roadmap tab.
+• Touch & Trackpad Friendly: Hover OR click/tap underlined citations (without hijacking real hyperlinks).
+• Optional Quick Links: Jump straight to the full standard online (e.g., ReformedStandards.com), or toggle footer links off in Settings.
+
+PRIVACY FIRST
+• Zero install-time host permissions (`host_permissions`).
+• Zero analytics, zero tracking, zero ads. 100% open source (GPL-3.0).
